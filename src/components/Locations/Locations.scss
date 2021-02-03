@@ -1,0 +1,19 @@
+.location {
+  text-align: center;
+
+  &__header {
+    font-size: 40px;
+    color:#AAFF5A;
+  }
+
+  &__filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  &__warning {
+    color: #E6D7AF;
+  }
+}

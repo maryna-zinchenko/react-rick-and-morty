@@ -1,0 +1,31 @@
+.list-item {
+  position: relative;
+  width: 150px;
+  padding: 50px 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+
+  &__destroy {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 30px;
+    background-color: rgb(236, 140, 140);
+    border: 1px solid red;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+ &__completed {
+   background-color: gray;
+   text-decoration: line-through;
+ }
+
+
+  &__toggle {
+    position: absolute;
+    width: 30px;
+    top: 10px;
+    left: 10px;
+  }
+}

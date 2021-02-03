@@ -1,0 +1,17 @@
+.watch-list {
+  text-align: center;
+
+  &__header {
+    font-size: 40px;
+    color:#AAFF5A;
+  }
+
+  &__list {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px
+  }
+}
