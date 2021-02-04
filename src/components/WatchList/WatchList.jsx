@@ -39,15 +39,16 @@ export default function WatchList() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const todo = {
-      title,
-      id: +new Date(),
-      completed: false,
-    };
-
-    setTodos([...todos, todo]);
-    setTitle('');
+    if (title) {
+      const todo = {
+        title,
+        id: +new Date(),
+        completed: false,
+      };
+  
+      setTodos([...todos, todo]);
+      setTitle('');
+    }
   };
 
   const deleteTodo = (id) => {
