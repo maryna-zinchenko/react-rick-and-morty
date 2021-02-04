@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 import './Characters.scss';
 import useStyles from './useStyles'
 
@@ -50,6 +51,12 @@ import useStyles from './useStyles'
     if (page > 1) {
       setPage(prev => prev - 1)
     }
+  }
+
+  const clearFilters = () => {
+    setSpecies('');
+    setGender('');
+    setStatus('');
   }
 
   const pages = Array.from(Array(info).keys());
@@ -109,6 +116,14 @@ import useStyles from './useStyles'
           <MenuItem value="unknown">Unknown</MenuItem>
         </Select>
       </FormControl>
+      <Button 
+        className={classes.formControl}
+        onClick={clearFilters}
+        variant="contained" 
+        color="primary"
+      >
+        Reset filter
+      </Button>
       <div className="characters__buttons">
         <button
           className="characters__control"
