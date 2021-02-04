@@ -42,7 +42,6 @@ export default function WatchList() {
     };
 
     setTodos([...todos, todo]);
-
     setTitle('');
   };
 
@@ -53,8 +52,9 @@ export default function WatchList() {
   const completeTodo = (id) => {
     const found = todos.find(todo => todo.id === id);
     found.completed = true;
-    setTodos(todos, found);
+    setTodos(todos);
     localStorage.setItem('todos', JSON.stringify(todos));
+    console.log(todos)
   };
 
   return (
