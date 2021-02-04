@@ -9,12 +9,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
 import { request } from '..//..//api';
 import './Locations.scss';
 import useStyles from './useStyles';
-
+import LocationFilter from "./LocationFilter/LocationFilter";
 
 export default function Locations() {
   const classes = useStyles();
@@ -45,7 +43,9 @@ export default function Locations() {
   }, [page, name, type, dimension])
 
   const showNextPage = () => {
-    setPage(prev => prev + 1)
+    if (page < 6) {
+      setPage(page + 1)
+    }
   }
 
   const showPrevPage = () => {
@@ -59,33 +59,9 @@ export default function Locations() {
       <h2 className="location__header">Locations</h2>
       {error && <p className="location__warning"> No matches!</p>}
       <div className="location__filters">
-      <FormControl className={classes.filters} noValidate autoComplete="off">
-        <TextField 
-          id="filled-basic" 
-          label="Name" 
-          variant="filled" 
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </FormControl>
-      <FormControl className={classes.filters} noValidate autoComplete="off">
-        <TextField 
-          id="filled-basic" 
-          label="Dimension" 
-          variant="filled" 
-          value={dimension}
-          onChange={(e) => setDimension(e.target.value)}
-        />
-      </FormControl>
-      <FormControl className={classes.filters} noValidate autoComplete="off">
-        <TextField 
-          id="filled-basic" 
-          label="Type" 
-          variant="filled" 
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        />
-      </FormControl>
+        <LocationFilter name="Name" filterFunction={(item) => setName(item)}/>
+        <LocationFilter name="Dimension" filterFunction={(item) => setDimension(item)}/>
+        <LocationFilter name="Type" filterFunction={(item) => setType(item)}/>
       </div>
         
       <TableContainer className={classes.root} component={Paper} centered>

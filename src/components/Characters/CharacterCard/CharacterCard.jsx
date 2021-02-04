@@ -15,9 +15,7 @@ export default function CharacterCard({ character }) {
 
   return (
     <Popup trigger={
-      <Card 
-        className={classNames(classes.root)}
-      >
+      <Card className={classNames(classes.root)}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
