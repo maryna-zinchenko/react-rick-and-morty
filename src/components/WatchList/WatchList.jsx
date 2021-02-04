@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ListItem } from './ListItem/ListItem';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -23,6 +23,15 @@ export default function WatchList() {
   const [title, setTitle] = useState('');
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    const storageTodos = localStorage.getItem('todos');
+    setTodos(JSON.parse(storageTodos));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -32,16 +41,20 @@ export default function WatchList() {
       completed: false,
     };
 
-    setTodos(prevTodos => ([
-      ...prevTodos,
-      todo,
-    ]));
+    setTodos([...todos, todo]);
 
     setTitle('');
   };
 
   const deleteTodo = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const completeTodo = (id) => {
+    const found = todos.find(todo => todo.id === id);
+    found.completed = true;
+    setTodos(todos, found);
+    localStorage.setItem('todos', JSON.stringify(todos));
   };
 
   return (
@@ -65,7 +78,12 @@ export default function WatchList() {
 
         <section className="watch-list__list">
           {todos && todos.map(todo => (
-                <ListItem todo={todo} deleteTodo={deleteTodo} />
+                <ListItem
+                  key={todo.id}
+                  todo={todo}
+                  deleteTodo={deleteTodo}
+                  completeFunc={completeTodo}
+                />
               ))
           }
         </section>

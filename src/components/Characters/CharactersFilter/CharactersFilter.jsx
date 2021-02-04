@@ -19,7 +19,6 @@ export default function CharactersFilter({ name, filters, filterFunction }) {
           {filters.map(filter => filter==='all'
             ? <MenuItem value={''}>{filter.charAt(0).toUpperCase() + filter.slice(1)}</MenuItem> 
             : <MenuItem value={filter}>{filter.charAt(0).toUpperCase() + filter.slice(1)}</MenuItem>)}
-
         </Select>
       </FormControl>
   )
