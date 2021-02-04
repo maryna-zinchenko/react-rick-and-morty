@@ -25,7 +25,12 @@ export default function WatchList() {
 
   useEffect(() => {
     const storageTodos = localStorage.getItem('todos');
-    setTodos(JSON.parse(storageTodos));
+
+    if (storageTodos) {
+      setTodos(JSON.parse(storageTodos));
+    } else {
+      setTodos([])
+    }
   }, []);
 
   useEffect(() => {
@@ -50,11 +55,14 @@ export default function WatchList() {
   };
 
   const completeTodo = (id) => {
-    const found = todos.find(todo => todo.id === id);
-    found.completed = true;
-    setTodos(todos);
-    localStorage.setItem('todos', JSON.stringify(todos));
-    console.log(todos)
+    setTodos(todos.map(function(todo) {
+      if (todo.id === id){
+        todo.completed = true
+        return todo;
+      } else {
+        return todo;
+      };
+    }))
   };
 
   return (
